@@ -1,0 +1,45 @@
+@base :300px;
+@opacity : rgba(255, 255, 255, 0.4);
+
+table{
+  width: @base*1.5;
+  height: @base;
+  margin: calc(50vh - @base/2) auto;
+  padding: 0 20px;
+  background: @opacity;
+  border-radius: @base/15 ;
+  overflow: hidden;
+  text-align: center;
+  tr > td {
+    padding: 0 @base*0.1;
+    width: @base *1.3;
+    height: @base*0.1;
+    font-size: 15px;
+    color: white;
+    font-weight: bold;
+    div{
+      cursor: pointer;
+    }
+    input{
+      width: 100%;
+      display: block;
+    }
+    button {
+      color: white;
+      background: @opacity;
+
+    }
+    span{
+      font-size: 13px;
+      font-weight: lighter;
+      cursor: pointer;
+    }
+
+  }
+  tr:first-of-type >td {
+    font-size: 20px;
+  }
+}
+
+
+

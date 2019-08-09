@@ -1,0 +1,15 @@
+<nz-empty
+  [nzNotFoundImage]="
+        'https://gw.alipayobjects.com/mdn/miniapp_social/afts/img/A*pevERLJC9v0AAAAAAAAAAABjAQAAAQ/original'
+      "
+  [nzNotFoundContent]="contentTpl"
+  [nzNotFoundFooter]="footerTpl"
+>
+  <ng-template #contentTpl>
+    <span> 临表涕零 <a href="#">不知所显</a> </span>
+  </ng-template>
+  <ng-template #footerTpl>
+    <button nz-button nzType="primary" (click)="onClick()">归去堂屋</button>
+  </ng-template>
+</nz-empty>
+

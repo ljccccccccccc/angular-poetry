@@ -1,0 +1,39 @@
+<table>
+  <tr>
+    <td colspan="2">
+      <div>南郭闲笙</div>
+    </td>
+  </tr>
+    <tr>
+      <td colspan="2">
+        <!--用户名-->
+        <nz-input-group [nzSuffix]="suffixUsername" [nzPrefix]="prefixUsername">
+        <input type="text" nz-input placeholder="名号" />
+      </nz-input-group>
+        <ng-template #prefixUsername><i nz-icon nzType="user"></i></ng-template>
+        <ng-template #suffixUsername
+        ><i nz-icon nz-tooltip nzTitle="{{vars.nzTitle}}" nzType="info-circle"></i
+        ></ng-template></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <!--密码-->
+        <nz-input-group [nzSuffix]="suffixPassword" [nzPrefix]="prefixPassword" >
+          <input
+            [type]="vars.passwordVisible ? 'text' : 'password'"
+            nz-input
+            placeholder="密语"
+            [(ngModel)]="vars.password"
+          />
+        </nz-input-group>
+        <ng-template #prefixPassword><i nz-icon nzType="key"></i></ng-template>
+        <ng-template #suffixPassword>
+          <i nz-icon [nzType]="vars.passwordVisible ? 'eye' : 'eye-invisible'" (click)="vars.passwordVisible = !vars.passwordVisible" [nz-tooltip]="vars.passwordVisible ? '隐去隐去':'示我以密语'"></i>
+        </ng-template></td>
+    </tr>
+  <tr>
+    <td><button nz-button nzType="default" (click)="login()">登陆</button>
+      <span>&nbsp;&nbsp;忘记密语</span></td>
+    <td><button nz-button nzType="default">注册</button></td>
+  </tr>
+  </table>

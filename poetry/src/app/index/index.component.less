@@ -1,0 +1,103 @@
+@chabai : #f3f8f1;
+@tanhong:#b36d61;
+@zhuqing:#789262;
+@tuose:#a88462;
+
+@logo:{ height: 32px;
+  background: @tuose;
+  margin: 16px;
+  text-align: center;
+  color: @chabai;
+  line-height: 32px;};
+nz-layout{
+  min-height: 100vh;
+}
+.trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.trigger:hover {
+  color: white;
+}
+
+.logo-fa{
+  @logo();
+  .logo {
+    @logo();
+  }
+}
+
+
+nz-header {
+  color: @chabai;
+  background: @zhuqing;
+  padding: 0;
+  .my-info{
+    float: right;
+    height: 100%;
+    margin-right: 100px;
+    min-width: 300px;
+  }
+  ::ng-deep nz-avatar {
+    display: inline-block;
+    margin-top: (64-46)/2px;
+    margin-right: 20px;
+    width: 46px;
+    height: 46px;
+    float: left;
+  }
+  .my-nickname{
+    display: inline-block;
+    color: @chabai;
+    font-size: 15px;
+    float: left;
+  }
+  i{
+    font-size: 16px;
+    color: @chabai;
+    float: left;
+    margin-left: 20px;
+    line-height: 67px;
+  }
+}
+//
+::ng-deep .ant-menu-dark .ant-menu-inline.ant-menu-sub{
+  background: @zhuqing;
+  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.2) inset;
+  -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.2) inset;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2) inset;
+}
+::ng-deep .ant-menu.ant-menu-dark .ant-menu-item-selected, .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected{
+  background: @tuose;
+}
+
+nz-content {
+  margin: 0 30px;
+}
+nz-sider{
+  background: @zhuqing;
+  ul{
+    background: @zhuqing;
+    li{
+      outline: none;
+    }
+  }
+}
+
+nz-breadcrumb {
+  margin: 16px 0;
+}
+
+.inner-content {
+  padding: 24px;
+  background: #fff;
+  min-height: 360px;
+}
+
+nz-footer {
+  text-align: center;
+}
