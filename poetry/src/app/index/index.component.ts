@@ -6,11 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls:['./index.component.less']
 })
 export class IndexComponent implements OnInit {
+  ulname:String="鄙人";
+  componentName:String="用量";
 
   isCollapsed : boolean = false;
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
+  }
+
+  changeComponentName (newUlName:String,newComponentName:String) {
+    this.componentName = newComponentName;
+    this.ulname = newUlName;
   }
 
 }

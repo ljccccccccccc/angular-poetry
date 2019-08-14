@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {ElementRef, NgModule, Injectable} from '@angular/core';
+import {NgModule, Injectable} from '@angular/core';
 import {NgxEchartsModule} from 'ngx-echarts';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,11 +20,17 @@ import { AchievementComponent } from './achievement/achievement.component';
 import { PurchaseComponent } from './purchase/purchase.component';
 import { TodayComponent } from './today/today.component';
 import { InterfacesComponent } from './interfaces/interfaces.component';
+import { RegisterComponent } from './register/register.component';
 
 registerLocaleData(zh);
 
 const appRoutes : Routes = [
-  {path:"",component:WelcomeComponent},
+  {path:"",component:WelcomeComponent,children:
+      [{path:"",component:LoginComponent},
+        {path:"login",component:LoginComponent},
+        {path:"register",component:RegisterComponent}
+        ]
+  },
   {path:"index",component:IndexComponent,children:
       [
         {path:"",component:MyUsageComponent},
@@ -45,7 +51,8 @@ const appRoutes : Routes = [
     AchievementComponent,
     PurchaseComponent,
     TodayComponent,
-    InterfacesComponent
+    InterfacesComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

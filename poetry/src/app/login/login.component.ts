@@ -22,6 +22,9 @@ export class LoginComponent implements OnInit {
   login () :void {
     this.router.navigateByUrl("index")
   }
+  register():void {
+    this.router.navigateByUrl("register");
+  }
 
 
 }

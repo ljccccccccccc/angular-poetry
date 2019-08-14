@@ -6,15 +6,15 @@
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
       <li nz-submenu nzTitle="鄙人" nzIcon="user">
         <ul>
-          <li nz-menu-item routerLink="./my-usage">用量</li>
-          <li nz-menu-item routerLink="./achievement">功勋</li>
-          <li nz-menu-item routerLink="./purchase">购买</li>
+          <li nz-menu-item routerLink="./my-usage" (click)="changeComponentName('鄙人','用量')">用量</li>
+          <li nz-menu-item routerLink="./achievement" (click)="changeComponentName('鄙人','功勋')">功勋</li>
+          <li nz-menu-item routerLink="./purchase" (click)="changeComponentName('鄙人','购买')">购买</li>
         </ul>
       </li>
       <li nz-submenu nzTitle="网站" nzIcon="team">
         <ul>
-          <li nz-menu-item routerLink="./today">今日流量</li>
-          <li nz-menu-item routerLink="./interfaces">总接入</li>
+          <li nz-menu-item routerLink="./today" (click)="changeComponentName('网站','今日流量')">今日流量</li>
+          <li nz-menu-item routerLink="./interfaces" (click)="changeComponentName('网站','总接入')">总接入</li>
         </ul>
       </li>
       <li nz-menu-item>
@@ -33,8 +33,8 @@
     </nz-header>
     <nz-content>
       <nz-breadcrumb>
-        <nz-breadcrumb-item>鄙人</nz-breadcrumb-item>
-        <nz-breadcrumb-item>用量</nz-breadcrumb-item>
+        <nz-breadcrumb-item>{{ulname}}</nz-breadcrumb-item>
+        <nz-breadcrumb-item>{{componentName}}</nz-breadcrumb-item>
       </nz-breadcrumb>
       <div class="inner-content">
         <router-outlet></router-outlet>
