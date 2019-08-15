@@ -25,8 +25,8 @@ export class RegisterComponent implements OnInit {
   postUrl : string = "localhost:8081/registe";
   poetryCustom : PoetryCustom = {
     customEmail: '',
-    customPassword:'',
     customNickName:'',
+    customPassword:'',
     customAvatar:this.avatarUrl,
     customVerificationCode:''
   };
