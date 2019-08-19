@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit {
   }
 
   login () :void {
-    console.log(this.myGlobal.CUSTOMEMAIL,this.password);
     const headers = new HttpHeaders().set(
       "Content-Type",
       "application/json;charset=utf-8"
@@ -32,10 +31,33 @@ export class LoginComponent implements OnInit {
       .subscribe(
         res =>{
           if(res['code'] === 0){
-            //把数据保存在本地
-            this.myGlobal.CUSTOMEMAIL=res['data']['customEmail'];
-            this.myGlobal.CUSTOMAVATAR=res['data']['customAvatar'];
-            this.myGlobal.CUSTOMNICKNAME=res['data']['customNickName'];
+            //把数据保存在session
+            sessionStorage.setItem("customEmail",res['data']['customEmail']);
+            sessionStorage.setItem("customAvatar",res['data']['customAvatar']);
+            sessionStorage.setItem("customNickName",res['data']['customNickName']);
+            sessionStorage.setItem("customBalance",res['data']['customBalance']);
+            sessionStorage.setItem("customUsage",res['data']['customUsage']);
+            sessionStorage.setItem("customUsageToday",res['data']['customUsageToday']);
+            sessionStorage.setItem("customUsageYesterday",res['data']['customUsageYesterday']);
+            sessionStorage.setItem("customUsageBeforeYesterday",res['data']['customUsageBeforeYesterday']);
+            sessionStorage.setItem("customIp",res['data']['customIp']);
+            sessionStorage.setItem("customFirstTime",res['data']['customFirstTime']);
+            sessionStorage.setItem("customCount",res['data']['customCount']);
+            sessionStorage.setItem("customIsBlack",res['data']['customIsBlack']);
+
+            // this.myGlobal.CUSTOMEMAIL= sessionStorage.getItem("customEmail");
+            // this.myGlobal.CUSTOMAVATAR  = sessionStorage.getItem("customAvatar");
+            // this.myGlobal.CUSTOMNICKNAME  = sessionStorage.getItem("customNickName");
+            // this.myGlobal.CUSTOMBALANCE  = sessionStorage.getItem("customBalance");
+            // this.myGlobal.CUSTOMUSAGE  = sessionStorage.getItem("customUsage");
+            // this.myGlobal.CUSTOMUSAGETODAY = sessionStorage.getItem("customUsageToday");
+            // this.myGlobal.CUSTOMUSAGEYESTERDAY = sessionStorage.getItem("customUsageYesterday");
+            // this.myGlobal.CUSTOMUSAGEBEFOREYESTERDAY = sessionStorage.getItem("customUsageBeforeYesterday");
+            // this.myGlobal.CUSTOMIP = sessionStorage.getItem("customIp");
+            // this.myGlobal.CUSTOMFIRSTTIME = sessionStorage.getItem("customFirstTime");
+            // this.myGlobal.CUSTOMCOUNT = sessionStorage.getItem("customCount");
+            // this.myGlobal.CUSTOMISBLACK  = sessionStorage.getItem("customIsBlack");
+            // this.myGlobal.CUSTOMISONLINE = sessionStorage.getItem("customIsOnline");
             this.router.navigateByUrl("index");
           }else if(res['code'] == 2){
             this.createNotificationOnline('error');

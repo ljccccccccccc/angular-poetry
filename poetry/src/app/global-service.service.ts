@@ -12,6 +12,16 @@ export class GlobalServiceService {
   CUSTOMEMAIL:string="";
   CUSTOMAVATAR :string = "";
   CUSTOMNICKNAME : string = "";
+  CUSTOMBALANCE : string;
+  CUSTOMUSAGE : string;
+  CUSTOMUSAGETODAY: string;
+  CUSTOMUSAGEYESTERDAY : string;
+  CUSTOMUSAGEBEFOREYESTERDAY : string;
+  CUSTOMIP : string;
+  CUSTOMFIRSTTIME:string;
+  CUSTOMCOUNT:string;
+  CUSTOMISBLACK :string;
+  CUSTOMISONLINE:string;
   JSONHEADER = new HttpHeaders().set(
     "Content-Type","application/json;charset=utf-8"
   );

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {GlobalServiceService} from "../global-service.service";
 
 @Component({
   selector: 'app-my-usage',
@@ -7,82 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyUsageComponent implements OnInit {
 
-  constructor() {}
+  constructor(private myGlobal : GlobalServiceService) {}
 
   ngOnInit() {
   }
 
   getOptions() :Object {
-    const option : Object = {
-      backgroundColor: '#ffffff',
-
-      title: {
-        text: '鄙人用量',
-        left: 'center',
-        top: 20,
-        textStyle: {
-          color: '#222'
-        }
+    console.warn(this.myGlobal);
+    const option = {
+      xAxis: {
+        type: 'category',
+        data: ['前天用量', '昨天用量', '今天用量']
       },
-
-      tooltip : {
-        trigger: 'item',
-        formatter: "{a} <br/>{b} : {c} ({d}%)"
+      yAxis: {
+        type: 'value'
       },
-
-      visualMap: {
-        show: false,
-        min: 80,
-        max: 600,
-        inRange: {
-          colorLightness: [0, 1]
-        }
-      },
-      series : [
-        {
-          name:'今日用量',
-          type:'pie',
-          radius : '55%',
-          center: ['50%', '50%'],
-          data:[
-            {value:335, name:'已用量'},
-            {value:310, name:'未用量'}
-          ].sort(function (a, b) { return a.value - b.value; }),
-          roseType: 'radius',
-          label: {
-            normal: {
-              textStyle: {
-                color: 'rgba(255, 255, 255, 0.2)'
-              }
-            }
-          },
-          labelLine: {
-            normal: {
-              lineStyle: {
-                color: 'rgba(255, 255, 255, 0.3)'
-              },
-              smooth: 0.2,
-              length: 10,
-              length2: 20
-            }
-          },
-          itemStyle: {
-            normal: {
-              color: '#b36d61',
-              shadowBlur: 100,
-              shadowColor: 'rgba(0, 0, 0, 0.5)'
-            }
-          },
-
-          animationType: 'scale',
-          animationEasing: 'elasticOut',
-          animationDelay: function (idx) {
-            return Math.random() * 200;
-          }
-        }
-      ]
+      series: [{
+        data: [this.myGlobal.CUSTOMUSAGEBEFOREYESTERDAY, this.myGlobal.CUSTOMUSAGEYESTERDAY, this.myGlobal.CUSTOMUSAGETODAY],
+        type: 'bar'
+      }]
     };
     return option;
-}
+  }
 
 }
