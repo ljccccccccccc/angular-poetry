@@ -11,8 +11,12 @@ import {NzNotificationService} from "ng-zorro-antd";
 })
 export class IndexComponent implements OnInit {
 
-  ulname:String="鄙人";
-  componentName:String="用量";
+
+  customEmail:string = '';
+  customAvatar:string = '';
+  customNickName:string = '';
+  ulname:string="鄙人";
+  componentName:string="用量";
 
   isCollapsed : boolean = false;
   constructor(private http : HttpClient,private myGlobal : GlobalServiceService,private router : Router,private notification: NzNotificationService) {}
@@ -32,9 +36,14 @@ export class IndexComponent implements OnInit {
     this.myGlobal.CUSTOMCOUNT = sessionStorage.getItem("customCount");
     this.myGlobal.CUSTOMISBLACK  = sessionStorage.getItem("customIsBlack");
     this.myGlobal.CUSTOMISONLINE = sessionStorage.getItem("customIsOnline");
+
+
+    this.customEmail = this.myGlobal.CUSTOMEMAIL;
+    this.customAvatar = this.myGlobal.CUSTOMAVATAR;
+    this.customNickName = this.myGlobal.CUSTOMNICKNAME;
   }
 
-  changeComponentName (newUlName:String,newComponentName:String) {
+  changeComponentName (newUlName:string,newComponentName:string) {
     this.componentName = newComponentName;
     this.ulname = newUlName;
   }

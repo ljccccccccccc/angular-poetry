@@ -33,7 +33,7 @@
       <!--密码-->
       <nz-input-group [nzSuffix]="suffixPassword" [nzPrefix]="prefixPassword" >
         <input
-          [type]="vars.passwordVisible ? 'text' : 'password'"
+          [type]="passwordVisible ? 'text' : 'password'"
           nz-input
           placeholder="密语"
           [(ngModel)]="poetryCustom.customPassword"
@@ -41,7 +41,7 @@
       </nz-input-group>
       <ng-template #prefixPassword><i nz-icon nzType="key"></i></ng-template>
       <ng-template #suffixPassword>
-        <i nz-icon [nzType]="vars.passwordVisible ? 'eye' : 'eye-invisible'" (click)="vars.passwordVisible = !vars.passwordVisible" [nz-tooltip]="vars.passwordVisible ? '隐去隐去':'示我以密语'"></i>
+        <i nz-icon [nzType]="passwordVisible ? 'eye' : 'eye-invisible'" (click)="passwordVisible = !passwordVisible" [nz-tooltip]="passwordVisible ? '隐去隐去':'示我以密语'"></i>
       </ng-template></td>
   </tr>
   <!--昵称-->

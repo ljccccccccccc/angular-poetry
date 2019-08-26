@@ -28,12 +28,10 @@ const appRoutes : Routes = [
   {path:"",component:WelcomeComponent,children:
       [{path:"",component:LoginComponent},
         {path:"login",component:LoginComponent},
-        {path:"register",component:RegisterComponent}
-        ]
+        {path:"register",component:RegisterComponent}]
   },
   {path:"index",component:IndexComponent,children:
-      [
-        {path:"",component:MyUsageComponent},
+      [{path:"",component:MyUsageComponent},
         {path:"my-usage",component:MyUsageComponent},
         {path:"achievement",component:AchievementComponent},
         {path:"purchase",component:PurchaseComponent},

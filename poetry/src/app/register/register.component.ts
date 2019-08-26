@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {PoetryCustom} from "../PoetryCustom";
 import {catchError} from "rxjs/operators";
+import {GlobalServiceService} from "../global-service.service";
 
 @Component({
   selector: 'app-register',
@@ -15,14 +16,11 @@ import {catchError} from "rxjs/operators";
 @Injectable()
 export class RegisterComponent implements OnInit {
 
-  vars : Object = {
-    nzTitle : "烦请阁下键入名号",
-    passwordVisible : false,
-    password:""
-  };
+
+    passwordVisible :boolean= false;
+
   loading = false;
   avatarUrl: string;
-  postUrl : string = "localhost:8081/registe";
   poetryCustom : PoetryCustom = {
     customEmail: '',
     customNickName:'',
@@ -33,7 +31,7 @@ export class RegisterComponent implements OnInit {
 
   public arrayList : any;
 
-  constructor(private msg: NzMessageService,private router : Router,private http:HttpClient, private notification: NzNotificationService) {}
+  constructor(private msg: NzMessageService,private router : Router,private http:HttpClient, private notification: NzNotificationService,private myGlobal : GlobalServiceService) {}
   ngOnInit(): void {
   }
 
@@ -46,7 +44,7 @@ export class RegisterComponent implements OnInit {
       "Content-Type",
       "application/json;charset=utf-8"
     );
-    this.http.post("http://localhost:8081/registe", this.poetryCustom,{headers})
+    this.http.post(this.myGlobal.URL+"/registe", this.poetryCustom,{headers})
       .subscribe(
         res=>{console.log(res);this.createNotification('success');this.backtologin()},
         error => console.log(error),

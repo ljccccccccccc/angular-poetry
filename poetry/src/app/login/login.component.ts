@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
     nzTitle = "烦请阁下键入名号";
     passwordVisible =false;
     password="";
+    customEmail:string = '';
 
 
   constructor(private router : Router,private http : HttpClient,private notification: NzNotificationService, private myGlobal : GlobalServiceService) {}
@@ -27,7 +28,7 @@ export class LoginComponent implements OnInit {
       "Content-Type",
       "application/json;charset=utf-8"
     );
-    this.http.post("http://localhost:8081/login", {'customEmail':this.myGlobal.CUSTOMEMAIL,'customPassword':this.password},{headers})
+    this.http.post(this.myGlobal.URL+"/login", {'customEmail':this.customEmail,'customPassword':this.password},{headers})
       .subscribe(
         res =>{
           if(res['code'] === 0){
@@ -61,6 +62,8 @@ export class LoginComponent implements OnInit {
             this.router.navigateByUrl("index");
           }else if(res['code'] == 2){
             this.createNotificationOnline('error');
+          }else if(res['code'] == 1){
+            this.createNotification('error');
           }
         },
         error => {console.log(error)},
