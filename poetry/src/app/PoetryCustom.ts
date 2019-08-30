@@ -1,7 +1,7 @@
 export class PoetryCustom{
-  customEmail: String;
-  customPassword:String;
-  customNickName:String;
-  customAvatar:String;
-  customVerificationCode:String
+  customEmail: string;
+  customPassword:string;
+  customNickName:string;
+  customAvatar:string;
+  customVerificationCode:string
 }

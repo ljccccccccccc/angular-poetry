@@ -4,7 +4,6 @@ import {Observable, Observer, throwError} from "rxjs";
 import {Router} from "@angular/router";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {PoetryCustom} from "../PoetryCustom";
-import {catchError} from "rxjs/operators";
 import {GlobalServiceService} from "../global-service.service";
 
 @Component({
@@ -19,6 +18,8 @@ export class RegisterComponent implements OnInit {
 
     passwordVisible :boolean= false;
 
+    canSubmit : boolean = false;
+
   loading = false;
   avatarUrl: string;
   poetryCustom : PoetryCustom = {
@@ -29,7 +30,6 @@ export class RegisterComponent implements OnInit {
     customVerificationCode:''
   };
 
-  public arrayList : any;
 
   constructor(private msg: NzMessageService,private router : Router,private http:HttpClient, private notification: NzNotificationService,private myGlobal : GlobalServiceService) {}
   ngOnInit(): void {
@@ -40,15 +40,33 @@ export class RegisterComponent implements OnInit {
   }
 
   registeSubmit() {
-    const headers = new HttpHeaders().set(
+    this.checkIsNull(this.poetryCustom.customEmail,'邮箱地址',() => {
+      this.checkIsNull(this.poetryCustom.customVerificationCode,'验证码',() => {
+        this.checkIsNull(this.poetryCustom.customPassword,'密码', () => {
+          this.checkIsNull(this.poetryCustom.customNickName,'名号',() => {this.canSubmit = true});
+        });
+      });
+    });
+    let headers = new HttpHeaders().set(
       "Content-Type",
       "application/json;charset=utf-8"
     );
-    this.http.post(this.myGlobal.URL+"/registe", this.poetryCustom,{headers})
-      .subscribe(
-        res=>{console.log(res);this.createNotification('success');this.backtologin()},
-        error => console.log(error),
-          ()=>console.log("complete!"));
+    if(this.canSubmit){
+      this.http.post(this.myGlobal.URL+"/registe", this.poetryCustom,{headers})
+        .subscribe(
+          res=>{
+            if(res['code'] === 0){
+              this.createNotification('success','注册成功，快快登录吧！','恭喜阁下！阁下的注册令陋站深感荣幸，小站如有招待不周，望不吝指教，信息反馈至ljccccccccccc@163.com！');
+              this.backtologin();
+            }else{
+              this.createNotification('error','注册失败！','请检查各表单填写项！小站如有招待不周，望不吝指教，信息反馈至ljccccccccccc@163.com！');
+            }},
+          error => {
+            this.createNotification('error','注册失败！','请检查网络！小站如有招待不周，望不吝指教，信息反馈至ljccccccccccc@163.com！')},
+          ()=>{
+            this.canSubmit = false;
+          });
+    }
   }
 
   beforeUpload = (file: File) => {
@@ -79,11 +97,11 @@ export class RegisterComponent implements OnInit {
     });
   };
 
-  createNotification(type: string): void {
+  createNotification(type: string,title:string,content:string): void {
     this.notification.create(
       type,
-      '注册成功，快快登录吧！',
-      '恭喜阁下！阁下的注册令陋站深感荣幸，小站如有招待不周，望不吝指教，信息反馈至ljccccccccccc@163.com！'
+      title,
+      content
     );
   }
 
@@ -128,4 +146,45 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  getCode() {
+    this.checkIsNull(this.poetryCustom.customEmail,'邮箱地址',() => {
+      let reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+      if(reg.test(this.poetryCustom.customEmail)){
+          this.canSubmit = true;
+      }else{
+        console.log(this.poetryCustom.customEmail);
+        this.canSubmit = false;
+        this.createNotification('error','请填写正确的邮箱地址！','邮箱格式一般为:  XXX@XXX.XXX！');
+      }
+    });
+    let headers = new HttpHeaders().set(
+      "Content-Type",
+      "application/json;charset=utf-8"
+    );
+    if(this.canSubmit){
+      this.http.post(this.myGlobal.URL+"/sendVerificationCode", this.poetryCustom,{headers})
+        .subscribe(
+          res=>{if(res['code'] === 0){
+            this.createNotification('success','验证码发送成功！','验证码发送成功！快去邮箱查看吧！同时注意一下“垃圾箱”哦！');
+          }else{
+            this.createNotification('error','验证码发送失败！','请检查是否正确填写。小站如有招待不周，望不吝指教，信息反馈至ljccccccccccc@163.com！');
+          }},
+          error => {
+            this.createNotification('error','验证码发送失败！','小站如有招待不周，望不吝指教，信息反馈至ljccccccccccc@163.com！');
+          },
+          ()=>{
+            this.canSubmit = false;
+          })
+    }
+  }
+
+  checkIsNull(str : string , notice : string , fn : any = () => {})  {
+    if(str == '') {
+      this.createNotification('error','请检查'+notice+'！','小站如有招待不周，望不吝指教，信息反馈至ljccccccccccc@163.com！');
+      this.canSubmit = false;
+    }else{
+      fn();
+    }
+    return this;
+  }
 }

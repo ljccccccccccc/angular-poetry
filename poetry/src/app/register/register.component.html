@@ -14,7 +14,7 @@
       <ng-template #suffixEmail
       ><i nz-icon nz-tooltip nzTitle="邮箱用作登陆账号，请慎重填写！" nzType="info-circle"></i
       ></ng-template></td>
-    <td><button nz-button>发送验证码</button></td>
+    <td><button nz-button (click)="getCode()" >发送验证码</button></td>
   </tr>
   <!--验证码-->
   <tr>

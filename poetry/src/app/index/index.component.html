@@ -7,8 +7,8 @@
       <li nz-submenu nzTitle="鄙人" nzIcon="user">
         <ul>
           <li nz-menu-item routerLink="./my-usage" (click)="changeComponentName('鄙人','用量')">用量</li>
-          <li nz-menu-item routerLink="./achievement" (click)="changeComponentName('鄙人','功勋')">功勋</li>
-          <li nz-menu-item routerLink="./purchase" (click)="changeComponentName('鄙人','购买')">购买</li>
+<!--          <li nz-menu-item routerLink="./achievement" (click)="changeComponentName('鄙人','功勋')">功勋</li>-->
+<!--          <li nz-menu-item routerLink="./purchase" (click)="changeComponentName('鄙人','购买')">购买</li>-->
         </ul>
       </li>
       <li nz-submenu nzTitle="网站" nzIcon="team">
@@ -40,6 +40,10 @@
         <router-outlet></router-outlet>
       </div>
     </nz-content>
-    <nz-footer>南郭闲笙&nbsp;&nbsp;©2019&nbsp;Founded&nbsp;by&nbsp;ljccccccccccc@163.com</nz-footer>
+    <nz-footer>
+      <a href="http://beian.miit.gov.cn">南郭闲笙&nbsp;&nbsp;©2019&nbsp;Founded&nbsp;by&nbsp;ljccccccccccc@163.com</a>
+      <br/>
+      <a href="http://beian.miit.gov.cn">陕ICP备18009783号-1</a>
+    </nz-footer>
   </nz-layout>
 </nz-layout>
