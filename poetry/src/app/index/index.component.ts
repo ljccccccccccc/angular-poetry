@@ -19,6 +19,7 @@ export class IndexComponent implements OnInit {
   componentName:string="用量";
 
   isCollapsed : boolean = false;
+  isVisible:boolean = false;
   constructor(private http : HttpClient,private myGlobal : GlobalServiceService,private router : Router,private notification: NzNotificationService) {}
 
   ngOnInit() {
@@ -68,5 +69,17 @@ export class IndexComponent implements OnInit {
       '退出登录失败！',
       '请直接关闭选项卡，重新登录！'
     );
+  }
+
+  showModal(): void {
+    this.isVisible = true;
+  }
+
+  handleOk(): void {
+    this.isVisible = false;
+  }
+
+  handleCancel(): void {
+    this.isVisible = false;
   }
 }

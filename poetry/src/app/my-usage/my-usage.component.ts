@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {GlobalServiceService} from "../global-service.service";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {NzMessageService} from "ng-zorro-antd";
 
 @Component({
   selector: 'app-my-usage',
@@ -8,13 +10,26 @@ import {GlobalServiceService} from "../global-service.service";
 })
 export class MyUsageComponent implements OnInit {
 
-  constructor(private myGlobal : GlobalServiceService) {}
+  constructor(private myGlobal : GlobalServiceService,private http : HttpClient, private message: NzMessageService) {}
 
   ngOnInit() {
+    this.http.post(this.myGlobal.URL+'/myusage',{'customEmail':this.myGlobal.CUSTOMEMAIL})
+      .subscribe(
+        (res)=>{
+          if(res['code'] == 0){
+            this.myGlobal.CUSTOMUSAGETODAY = res['data']['customUsageToday'];
+            this.myGlobal.CUSTOMUSAGEYESTERDAY = res['data']['customUsageYesterday'];
+            this.myGlobal.CUSTOMUSAGEBEFOREYESTERDAY = res['data']['customUsageBeforeYesterday'];
+          }else{
+            this.message.info(res['msg']);
+          }
+        },
+        (error) => {this.message.info("请检查网络情况！");},
+        () => {}
+      )
   }
 
   getOptions() :Object {
-    console.warn(this.myGlobal);
     const option = {
       xAxis: {
         type: 'category',

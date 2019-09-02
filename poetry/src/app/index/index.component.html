@@ -17,9 +17,9 @@
           <li nz-menu-item routerLink="./interfaces" (click)="changeComponentName('网站','总接入')">总接入</li>
         </ul>
       </li>
-      <li nz-menu-item>
+      <li nz-menu-item (click)="showModal()">
         <i nz-icon nzType="file"></i>
-        <span>鸣谢</span>
+        <span>使用手册</span>
       </li>
     </ul>
   </nz-sider>
@@ -31,6 +31,11 @@
         <i nz-icon nzType="logout" nzTheme="outline" (click)="outline()"></i>
       </div>
     </nz-header>
+    <nz-modal [(nzVisible)]="isVisible" nzTitle="使用手册" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+      <p>第一步：注册并登陆网站账号</p>
+      <p>第二步：保证网站账号在线状态（只要不点击主页昵称旁边的退出按钮，即使关闭网页也不会退出）</p>
+      <p>第三步：发送GET请求地址为:http://api.ngxs.ink/get/你的邮箱地址</p>
+    </nz-modal>
     <nz-content>
       <nz-breadcrumb>
         <nz-breadcrumb-item>{{ulname}}</nz-breadcrumb-item>

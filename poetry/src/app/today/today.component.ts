@@ -17,7 +17,7 @@ export class TodayComponent implements OnInit {
     this.http.get(this.myGlobal.URL + "/todayUsage")
       .subscribe(
         res => {
-          if(res['data']['todayUsage']){
+          if(res['data']['todayUsage'] >= 0){
             this.todayUsage = res['data']['todayUsage'];
             this.getAllUsage();
           }else{
