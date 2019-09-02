@@ -35,7 +35,7 @@
         <input
           [type]="passwordVisible ? 'text' : 'password'"
           nz-input
-          placeholder="密语"
+          placeholder="密码"
           [(ngModel)]="poetryCustom.customPassword"
         />
       </nz-input-group>
@@ -48,11 +48,11 @@
   <tr>
     <td colspan="2">
       <nz-input-group [nzSuffix]="suffixNickname" [nzPrefix]="prefixNickname">
-        <input type="text" nz-input placeholder="名号" [(ngModel)]="poetryCustom.customNickName"/>
+        <input type="text" nz-input placeholder="昵称" [(ngModel)]="poetryCustom.customNickName"/>
       </nz-input-group>
       <ng-template #prefixNickname><i nz-icon nzType="user"></i></ng-template>
       <ng-template #suffixNickname
-      ><i nz-icon nz-tooltip nzTitle="所谓名号即昵称，可修改。" nzType="info-circle"></i
+      ><i nz-icon nz-tooltip nzTitle="昵称，后期可修改。" nzType="info-circle"></i
       ></ng-template></td>
   </tr>
   <!--头像-->
