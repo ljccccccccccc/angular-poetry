@@ -8,8 +8,8 @@ export class GlobalServiceService {
 
   constructor() { }
 
-  // URL="http://localhost:8081";
-  URL="http://api.ngxs.ink";
+  URL="http://localhost:8081";
+  // URL="http://api.ngxs.ink";
   CUSTOMEMAIL:string="";
   CUSTOMAVATAR :string = "";
   CUSTOMNICKNAME : string = "";

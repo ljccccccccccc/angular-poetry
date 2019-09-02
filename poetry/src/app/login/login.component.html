@@ -22,18 +22,18 @@
           <input
             [type]="passwordVisible ? 'text' : 'password'"
             nz-input
-            placeholder="密语"
+            placeholder="密码"
             [(ngModel)]="password"
           />
         </nz-input-group>
         <ng-template #prefixPassword><i nz-icon nzType="key"></i></ng-template>
         <ng-template #suffixPassword>
-          <i nz-icon [nzType]="passwordVisible ? 'eye' : 'eye-invisible'" (click)="passwordVisible = !passwordVisible" [nz-tooltip]="passwordVisible ? '隐去隐去':'示我以密语'"></i>
+          <i nz-icon [nzType]="passwordVisible ? 'eye' : 'eye-invisible'" (click)="passwordVisible = !passwordVisible" [nz-tooltip]="passwordVisible ? '算了算了':'看一下'"></i>
         </ng-template></td>
     </tr>
   <tr>
     <td><button nz-button nzType="default" (click)="login()">登陆</button>
-      <span>&nbsp;&nbsp;忘记密语</span></td>
+      <span>&nbsp;&nbsp;忘记密码</span></td>
     <td><button nz-button nzType="default" (click)="register()">注册</button></td>
   </tr>
   </table>

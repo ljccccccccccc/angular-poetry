@@ -1,10 +1,11 @@
 import {Component, Injectable, OnInit} from '@angular/core';
 import {NzMessageService, NzNotificationService, UploadFile} from "ng-zorro-antd";
-import {Observable, Observer, throwError} from "rxjs";
+import {Observable, Observer, throwError, interval} from "rxjs";
 import {Router} from "@angular/router";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {PoetryCustom} from "../PoetryCustom";
 import {GlobalServiceService} from "../global-service.service";
+import { take } from "rxjs/operators";
 
 @Component({
   selector: 'app-register',
@@ -20,6 +21,9 @@ export class RegisterComponent implements OnInit {
 
     canSubmit : boolean = false;
 
+  btnSendCode : string = '发送验证码';
+  disabledSendCode : boolean = true;
+
   loading = false;
   avatarUrl: string;
   poetryCustom : PoetryCustom = {
@@ -33,6 +37,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private msg: NzMessageService,private router : Router,private http:HttpClient, private notification: NzNotificationService,private myGlobal : GlobalServiceService) {}
   ngOnInit(): void {
+    this.disabledSendCode  = false;
   }
 
   backtologin(){
@@ -162,6 +167,7 @@ export class RegisterComponent implements OnInit {
       "application/json;charset=utf-8"
     );
     if(this.canSubmit){
+      this.countPlus();
       this.http.post(this.myGlobal.URL+"/sendVerificationCode", this.poetryCustom,{headers})
         .subscribe(
           res=>{if(res['code'] === 0){
@@ -186,5 +192,22 @@ export class RegisterComponent implements OnInit {
       fn();
     }
     return this;
+  }
+
+  countPlus() {
+
+
+    const numbers = interval(1000);
+    const takeFourNumbers = numbers.pipe(take(30));
+    takeFourNumbers.subscribe(
+      x => {
+        this.btnSendCode = (30-x)+"秒后可重发";
+        this.disabledSendCode=true;
+      },
+      error => {},
+      () => {
+        this.btnSendCode = "发送验证码";
+        this.disabledSendCode=false;
+      });
   }
 }

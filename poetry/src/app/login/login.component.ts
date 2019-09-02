@@ -11,7 +11,7 @@ import {GlobalServiceService} from "../global-service.service";
 })
 export class LoginComponent implements OnInit {
 
-    nzTitle = "烦请阁下键入名号";
+    nzTitle = "烦请键入邮箱";
     passwordVisible =false;
     password="";
     customEmail:string = '';

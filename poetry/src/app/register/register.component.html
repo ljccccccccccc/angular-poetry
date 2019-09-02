@@ -14,7 +14,7 @@
       <ng-template #suffixEmail
       ><i nz-icon nz-tooltip nzTitle="邮箱用作登陆账号，请慎重填写！" nzType="info-circle"></i
       ></ng-template></td>
-    <td><button nz-button (click)="getCode()" >发送验证码</button></td>
+    <td><button nz-button (click)="getCode()" [disabled]="disabledSendCode">{{btnSendCode}}</button></td>
   </tr>
   <!--验证码-->
   <tr>
@@ -41,7 +41,7 @@
       </nz-input-group>
       <ng-template #prefixPassword><i nz-icon nzType="key"></i></ng-template>
       <ng-template #suffixPassword>
-        <i nz-icon [nzType]="passwordVisible ? 'eye' : 'eye-invisible'" (click)="passwordVisible = !passwordVisible" [nz-tooltip]="passwordVisible ? '隐去隐去':'示我以密语'"></i>
+        <i nz-icon [nzType]="passwordVisible ? 'eye' : 'eye-invisible'" (click)="passwordVisible = !passwordVisible" [nz-tooltip]="passwordVisible ? '算了算了':'看一下'"></i>
       </ng-template></td>
   </tr>
   <!--昵称-->
@@ -79,6 +79,6 @@
   </tr>
   <tr>
     <td><button nz-button nzType="default" (click)="backtologin()">去登陆</button></td>
-    <td><button nz-button nzType="default" (click)="registeSubmit()">注册</button></td>
+    <td><button nz-button nzType="default" (click)="registeSubmit()" [disabled]="canSubmit">注册</button></td>
   </tr>
 </table>
