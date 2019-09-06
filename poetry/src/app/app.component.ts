@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
+
 
 //@ts-ignore
 @Component({
@@ -7,5 +9,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-
+  providers: [
+    ]
 }

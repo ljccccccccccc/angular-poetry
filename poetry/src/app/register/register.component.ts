@@ -171,9 +171,9 @@ export class RegisterComponent implements OnInit {
       this.http.post(this.myGlobal.URL+"/sendVerificationCode", this.poetryCustom,{headers})
         .subscribe(
           res=>{if(res['code'] === 0){
-            this.createNotification('success','验证码发送成功！','验证码发送成功！快去邮箱查看吧！同时注意一下“垃圾箱”哦！');
+            this.createNotification('success','成功！请注意“垃圾箱”！','验证码发送成功！快去邮箱查看吧！同时注意一下“垃圾箱”哦！');
           }else{
-            this.createNotification('error','验证码发送失败！','请检查是否正确填写。小站如有招待不周，望不吝指教，信息反馈至ljccccccccccc@163.com！');
+            this.createNotification('error','验证码发送失败！','验证码邮件可能在垃圾箱！请检查是否正确填写。其他信息反馈至ljccccccccccc@163.com！');
           }},
           error => {
             this.createNotification('error','验证码发送失败！','小站如有招待不周，望不吝指教，信息反馈至ljccccccccccc@163.com！');
